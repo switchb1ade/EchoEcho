@@ -1,86 +1,148 @@
-<div align="center">
-  <img src="assets/Echo-new.png" alt="Echo Music Logo" width="120"/>
+﻿<div align="center">
 
-  <h1>Echo Music</h1>
+```
+  ____       _              ____  _                       
+ |  _ \ __ _| |_ __ ___    |  _ \| | __ _ _   _  ___ _ __ 
+ | |_) / _` | | '_ ` _ \   | |_) | |/ _` | | | |/ _ \ '__|
+ |  __/ (_| | | | | | | |  |  __/| | (_| | |_| |  __/ |   
+ |_|   \__,_|_|_| |_| |_|  |_|   |_|\__,_|\__, |\___|_|   
+                                          |___/           
+```
 
-  <p><b>A modern Android music app with streaming, synced lyrics, offline playback, and an intuitive user experience.</b></p>
-  <p><i>Note: The app contains non-intrusive ads that are carefully placed so they will never ruin your music listening experience.</i></p>
-  
-  <p>
-    <a href="https://github.com/iad1tya/Echo-Music/releases/latest">Download APK</a> •
-    <a href="https://buymeacoffee.com/iad1tya">Buy me a Coffee</a> •
-    <a href="https://support.iad1tya.cyou">Support</a> •
-    <a href="https://instagram.com/iad1tya">Instagram</a> •
-    <a href="https://x.com/xad1tya">X</a>
-  </p>
+### 🌴 **Modern • Ad-Free • Lossless • Cross-Platform Music Client** 🌴
+
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4%20Multiplatform-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
+[![Android](https://img.shields.io/badge/Platform-Android%208.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://android.com)
+[![Compose](https://img.shields.io/badge/UI-Compose%20Multiplatform-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://www.jetbrains.com/lp/compose-multiplatform/)
+[![License](https://img.shields.io/badge/License-GPL--3.0-orange?style=for-the-badge)](LICENSE)
+[![Ad-Free](https://img.shields.io/badge/Ads-NOT%20Included-critical?style=for-the-badge)](#)
+
+<p align="center">
+  <b>Palm Player</b> is a lightweight, ad-free music streaming app engineered with <b>Kotlin & Compose Multiplatform</b>.<br/>
+  Powered by YouTube Music backend, Spotify Canvas integration, real-time synced lyrics, and an audiophile-grade 10-band equalizer.
+</p>
+
+---
+
 </div>
 
+## ✨ Highlights & Features
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🎧 Pure Listening Experience</h3>
+      <ul>
+        <li><b>Zero Advertisements:</b> Seamless uninterrupted audio.</li>
+        <li><b>High-Fidelity Audio:</b> Up to 256kbps stream with Opus codec.</li>
+        <li><b>Background Playback:</b> Listen with screen off or while multitasking.</li>
+        <li><b>Offline Mode:</b> Intelligent audio & thumbnail caching for offline playback.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>📜 Synced Lyrics & Canvas</h3>
+      <ul>
+        <li><b>Multi-Source Lyrics:</b> YouTube captions, LRCLIB, BetterLyrics, and Spotify.</li>
+        <li><b>Word & Line Sync:</b> Smooth real-time karaoke scrolling.</li>
+        <li><b>AI Lyrics Translation:</b> Translate foreign tracks on-the-fly.</li>
+        <li><b>Spotify Canvas:</b> Dynamic looping visual canvases.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🎛️ Audiophile Sound Controls</h3>
+      <ul>
+        <li><b>10-Band Parametric Equalizer:</b> Custom curve tuning with preamp control.</li>
+        <li><b>AutoEq Integration:</b> Instant headphone profile imports.</li>
+        <li><b>Crossfade DJ Engine:</b> Gapless transition between songs like Apple Music.</li>
+        <li><b>Volume Normalization:</b> Consistent loudness across distinct tracks.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>🚗 Ecosystem & Integration</h3>
+      <ul>
+        <li><b>Android Auto:</b> Full native automotive dashboard with media browser.</li>
+        <li><b>Google Cast:</b> Cast playback to smart TVs and speakers.</li>
+        <li><b>Last.fm Scrobbler:</b> Live scrobbling & now-playing updates.</li>
+        <li><b>Discord Rich Presence:</b> Broadcast your listening status.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
 ---
 
-## Try My Other Projects
+## 🎨 Modern UI & Customization
 
-If you're on a Mac, check out **Net Bar** — a minimal, native system monitor that lives in your menu bar. Actively maintained and available at [netbar.xyz](https://netbar.xyz).
-
----
-
-## Features
-
-- **High quality** up-to 256kbps stream for YouTube Music Premium users *(NEW)*
-- **Browsing** Home, Charts, Podcast, Moods & Genre with YouTube Music data at high speed
-- **Search everything** on YouTube
-- **Analyze your playing data**, create custom playlists, and sync with YouTube Music
-- **Spotify Canvas** supported
-- **Play 1080p video** option with subtitles
-- **AI song suggestions**
-- **Customize your playlist**, synced with YouTube Music
-- **Notifications** from followed artists
-- **Caching and offline playback** support
-- **Crossfade** with DJ-style like Apple Music *(NEW)*
-- **Customizing THEME** (Light, Dark, Color, etc) *(NEW)*
-- **Supports SponsorBlock** and Return YouTube Dislike
-- **Sleep Timer**
-- **Android Auto** with online content, feature-rich UI/UX *(NEW)*
+- **Material You Dynamic Theming:** Adapts color palette to album artwork or your system wallpaper.
+- **Glassmorphic & AMOLED Modes:** Crisp contrast, translucent bottom bar, and fluid gesture navigation.
+- **Queue & Playlist Management:** Drag-and-drop playlist sorting and instant synchronization.
 
 ---
 
-## Installation & Setup
+## 🏗️ Architecture
 
-Download the latest pre-compiled APK from the [Releases Page](https://github.com/iad1tya/Echo-Music/releases/latest).
+Palm Player is built following **Clean Architecture** and reactive unidirectional data flow:
+
+```mermaid
+graph TD
+    A[androidApp / UI Target] --> B[composeApp / UI & ViewModels]
+    B --> C[core:domain / Use Cases & Entities]
+    C --> D[core:data / Repositories & Room DB]
+    D --> E[core:service / YT Scraper, Spotify, Lyrics, AI]
+    D --> F[core:media / Media3 ExoPlayer Engine]
+```
+
+- **UI Framework:** Jetpack Compose Multiplatform
+- **DI:** Koin BOM
+- **Networking & Serialization:** Ktor Client + Kotlinx.serialization
+- **Audio Engine:** AndroidX Media3 (ExoPlayer) + Custom Audio Processors
+- **Local Persistence:** Room Database + AndroidX DataStore
 
 ---
 
-## Support the Project
+## 🚀 Building from Source
 
-If Echo Music has been useful to you, consider supporting its development!
+### Prerequisites
+- **JDK 17 or JDK 21** installed and configured (`JAVA_HOME`).
+- **Android SDK Platform 37** (or latest) with Build Tools installed.
+
+### Quick Build
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/switchb1ade/EchoEcho.git
+   cd EchoEcho
+   ```
+
+2. **Configure SDK Location:**
+   Create or edit `local.properties`:
+   ```properties
+   sdk.dir=/path/to/your/Android/Sdk
+   ```
+
+3. **Build Debug APK:**
+   ```bash
+   # On Windows (PowerShell)
+   .\gradlew.bat assembleDebug
+
+   # On Linux / macOS
+   ./gradlew assembleDebug
+   ```
+
+4. **Locate Generated APKs:**
+   Built APKs are located at:
+   ```
+   androidApp/build/outputs/apk/debug/
+   ```
+
+---
+
+## 📄 License
+
+This project is open source and distributed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for more information.
 
 <div align="center">
-  <a href="https://buymeacoffee.com/iad1tya"><img src="assets/bmac.png" width="140" style="margin: 10px; border-radius: 8px;"/></a>
-  <a href="https://intradeus.github.io/http-protocol-redirector/?r=upi://pay?pa=iad1tya@upi&pn=Aditya%20Yadav"><img src="assets/upi.svg" width="100" style="margin: 10px; border-radius: 8px;"/></a>
-  <a href="https://www.patreon.com/cw/iad1tya"><img src="assets/patreon3.png" width="100" style="margin: 10px; border-radius: 8px;"/></a>
-</div>
-
-<details>
-<summary><b>Cryptocurrency Options</b></summary>
-<br>
-
-| Network | Address |
-| :--- | :--- |
-| **Bitcoin** | `bc1qcvyr7eekha8uytmffcvgzf4h7xy7shqzke35fy` |
-| **Ethereum** | `0x51bc91022E2dCef9974D5db2A0e22d57B360e700` |
-| **Solana** | `9wjca3EQnEiqzqgy7N5iqS1JGXJiknMQv6zHgL96t94S` |
-
-</details>
-
----
-
-## Special Thanks
-
-After receiving a legal notice, the original repository was unfortunately taken down, meaning I no longer had access to the updated source code. Because of this, I decided to use one of the most stable and reliable open-source clients available—**SimpMusic**—as the new foundation for Echo Music. 
-
-A massive thank you to the SimpMusic developers for their incredible work. I will be building all future updates and features on top of this rock-solid foundation.
-
----
-
-<div align="center">
-  <p>Licensed under the <a href="LICENSE">GPL-3.0 License</a>.</p>
+  <sub>Built with 🌴 for music lovers everywhere.</sub>
 </div>
