@@ -2873,7 +2873,7 @@ private fun ImportProgressDialog(
                                 stringResource(
                                     Res.string.import_result,
                                     progress.result.playlistsCreated,
-                                    progress.result.songechoorted,
+                                    progress.result.songsImported,
                                 ),
                             style = typo().bodyMedium,
                         )

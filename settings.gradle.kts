@@ -50,9 +50,12 @@ include(
     ":kotlinYtmusicScraper",
     ":spotify",
     ":aiService",
+    ":autoEqService",
     ":lyricsService",
     ":media3",
     ":media3-ui",
+    ":media-jvm",
+    ":media-jvm-ui",
     ":crashlytics",
     ":crashlytics-empty",
     ":cast",
@@ -70,6 +73,7 @@ project(":domain").projectDir = File(coreDir, "domain")
 // service modules
 project(":ktorExt").projectDir = File(serviceDir, "ktorExt")
 project(":aiService").projectDir = File(serviceDir, "aiService")
+project(":autoEqService").projectDir = File(serviceDir, "autoEqService")
 project(":lyricsService").projectDir = File(serviceDir, "lyricsService")
 project(":kotlinYtmusicScraper").projectDir = File(serviceDir, "kotlinYtmusicScraper")
 project(":spotify").projectDir = File(serviceDir, "spotify")
@@ -78,5 +82,7 @@ project(":kizzy").projectDir = File(serviceDir, "kizzy")
 // media modules
 project(":media3").projectDir = File(mediaDir, "media3")
 project(":media3-ui").projectDir = File(mediaDir, "media3-ui")
+project(":media-jvm").projectDir = File(mediaDir, "media-jvm")
+project(":media-jvm-ui").projectDir = File(mediaDir, "media-jvm-ui")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

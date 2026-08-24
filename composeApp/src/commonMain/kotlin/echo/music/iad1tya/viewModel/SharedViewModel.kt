@@ -1116,11 +1116,11 @@ class SharedViewModel(
                             dataStoreManager.translationLanguage.first(),
                         )
                         log("Removed out-of-sync translated lyrics for $videoId")
-                        val echoMusicLyricsId = lyrics.echoMusicLyrics?.id
+                        val echoMusicLyricsId = lyrics.simpMusicLyrics?.id
                         if (lyricsProvider == LyricsProvider.echoMUSIC && !echoMusicLyricsId.isNullOrEmpty()) {
                             viewModelScope.launch {
                                 lyricsCanvasRepository
-                                    .voteechoMusicTranslatedLyrics(
+                                    .voteSimpMusicTranslatedLyrics(
                                         translatedLyricsId = echoMusicLyricsId,
                                         false,
                                     ).collectLatest {
@@ -1160,8 +1160,8 @@ class SharedViewModel(
                     if (lyricsProvider == LyricsProvider.echoMUSIC) {
                         _translatedVoteState.value =
                             VoteData(
-                                id = lyrics.echoMusicLyrics?.id ?: "",
-                                vote = lyrics.echoMusicLyrics?.vote ?: 0,
+                                id = lyrics.simpMusicLyrics?.id ?: "",
+                                vote = lyrics.simpMusicLyrics?.vote ?: 0,
                                 state = VoteState.Idle,
                             )
                     }
@@ -1176,7 +1176,7 @@ class SharedViewModel(
                     if (shouldSendLyricsToechoMusic && track != null) {
                         viewModelScope.launch {
                             lyricsCanvasRepository
-                                .insertechoMusicTranslatedLyrics(
+                                .insertSimpMusicTranslatedLyrics(
                                     dataStoreManager,
                                     track,
                                     lyrics,
@@ -1200,8 +1200,8 @@ class SharedViewModel(
                     if (lyricsProvider == LyricsProvider.echoMUSIC) {
                         _lyricsVoteState.value =
                             VoteData(
-                                id = lyrics.echoMusicLyrics?.id ?: "",
-                                vote = lyrics.echoMusicLyrics?.vote ?: 0,
+                                id = lyrics.simpMusicLyrics?.id ?: "",
+                                vote = lyrics.simpMusicLyrics?.vote ?: 0,
                                 state = VoteState.Idle,
                             )
                     }
@@ -1228,7 +1228,7 @@ class SharedViewModel(
                     if (shouldSendLyricsToechoMusic && track != null) {
                         viewModelScope.launch {
                             lyricsCanvasRepository
-                                .insertechoMusicLyrics(
+                                .insertSimpMusicLyrics(
                                     dataStoreManager,
                                     track,
                                     duration,
@@ -1320,7 +1320,7 @@ class SharedViewModel(
         artist: String?,
         duration: Int,
     ) {
-        lyricsCanvasRepository.getechoMusicLyrics(videoId).collectLatest {
+        lyricsCanvasRepository.getSimpMusicLyrics(videoId).collectLatest {
             Logger.w(tag, "Get echoMusic Lyrics for $videoId: $it")
             val data = it.data
             if (it is Resource.Success && data != null) {
@@ -1506,38 +1506,40 @@ class SharedViewModel(
     ) {
         val translationLanguage =
             dataStoreManager.translationLanguage.first()
-        lyricsCanvasRepository.getechoMusicTranslatedLyrics(videoId, translationLanguage).collectLatest { response ->
+        lyricsCanvasRepository.getSimpMusicTranslatedLyrics(videoId, translationLanguage).collectLatest { response ->
             val data = response.data
             when (response) {
-                is Resource.Success if (data != null) -> {
-                    // If echoMusic translated lyrics are RICH_SYNCED (word-by-word),
-                    // convert to LINE_SYNCED, downvote, and fallback to AI translation
-                    if (data.syncType == "RICH_SYNCED") {
-                        Logger.w(tag, "echoMusic translated lyrics are RICH_SYNCED, downvoting and falling back to AI")
-                        val echoMusicLyricsId = data.echoMusicLyrics?.id
-                        if (!echoMusicLyricsId.isNullOrEmpty()) {
-                            viewModelScope.launch {
-                                lyricsCanvasRepository
-                                    .voteechoMusicTranslatedLyrics(echoMusicLyricsId, false)
-                                    .collectLatest { voteResult ->
-                                        when (voteResult) {
-                                            is Resource.Error -> Logger.w(tag, "Downvote RICH_SYNCED translated lyrics error: ${voteResult.message}")
-                                            is Resource.Success -> Logger.d(tag, "Downvote RICH_SYNCED translated lyrics success")
+                is Resource.Success -> {
+                    if (data != null) {
+                        // If echoMusic translated lyrics are RICH_SYNCED (word-by-word),
+                        // convert to LINE_SYNCED, downvote, and fallback to AI translation
+                        if (data.syncType == "RICH_SYNCED") {
+                            Logger.w(tag, "echoMusic translated lyrics are RICH_SYNCED, downvoting and falling back to AI")
+                            val echoMusicLyricsId = data.simpMusicLyrics?.id
+                            if (!echoMusicLyricsId.isNullOrEmpty()) {
+                                viewModelScope.launch {
+                                    lyricsCanvasRepository
+                                        .voteSimpMusicTranslatedLyrics(echoMusicLyricsId, false)
+                                        .collectLatest { voteResult ->
+                                            when (voteResult) {
+                                                is Resource.Error -> Logger.w(tag, "Downvote RICH_SYNCED translated lyrics error: ${voteResult.message}")
+                                                is Resource.Success -> Logger.d(tag, "Downvote RICH_SYNCED translated lyrics success")
+                                            }
                                         }
-                                    }
+                                }
                             }
+                            // Fallback to AI translation
+                            getAITranslationLyrics(videoId, lyrics)
+                        } else {
+                            Logger.d(tag, "Get echoMusic Translated Lyrics Success")
+                            updateLyrics(
+                                videoId,
+                                0,
+                                data,
+                                true,
+                                LyricsProvider.echoMUSIC,
+                            )
                         }
-                        // Fallback to AI translation
-                        getAITranslationLyrics(videoId, lyrics)
-                    } else {
-                        Logger.d(tag, "Get echoMusic Translated Lyrics Success")
-                        updateLyrics(
-                            videoId,
-                            0,
-                            data,
-                            true,
-                            LyricsProvider.echoMUSIC,
-                        )
                     }
                 }
 
@@ -1735,11 +1737,11 @@ class SharedViewModel(
 
     fun getEnableLiquidGlass() = dataStoreManager.enableLiquidGlass
 
-    fun getLastShownSupportVersion() = dataStoreManager.lastShownSupportVersion
+    fun getLastShownSupportVersion() = dataStoreManager.getString("last_shown_support_version")
 
     fun setLastShownSupportVersion(version: String) {
         viewModelScope.launch {
-            dataStoreManager.setLastShownSupportVersion(version)
+            dataStoreManager.putString("last_shown_support_version", version)
         }
     }
 
@@ -1866,7 +1868,7 @@ class SharedViewModel(
     fun voteLyrics(upvote: Boolean) {
         val lyricsData = _nowPlayingScreenData.value.lyricsData
         val lyricsProvider = lyricsData?.lyricsProvider
-        val echoMusicLyricsId = lyricsData?.lyrics?.echoMusicLyrics?.id ?: return
+        val echoMusicLyricsId = lyricsData?.lyrics?.simpMusicLyrics?.id ?: return
 
         if (lyricsProvider != LyricsProvider.echoMUSIC || echoMusicLyricsId.isEmpty()) {
             Logger.w(tag, "Cannot vote: not a echoMusic lyrics or missing ID")
@@ -1880,7 +1882,7 @@ class SharedViewModel(
                 )
             }
             lyricsCanvasRepository
-                .voteechoMusicLyrics(
+                .voteSimpMusicLyrics(
                     lyricsId = echoMusicLyricsId,
                     upvote = upvote,
                 ).collectLatest { result ->
@@ -1921,7 +1923,7 @@ class SharedViewModel(
     fun voteTranslatedLyrics(upvote: Boolean) {
         val translatedLyrics = _nowPlayingScreenData.value.lyricsData?.translatedLyrics
         val lyricsProvider = translatedLyrics?.second
-        val echoMusicLyricsId = translatedLyrics?.first?.echoMusicLyrics?.id ?: return
+        val echoMusicLyricsId = translatedLyrics?.first?.simpMusicLyrics?.id ?: return
 
         if (lyricsProvider != LyricsProvider.echoMUSIC || echoMusicLyricsId.isEmpty()) {
             Logger.w(tag, "Cannot vote: not a echoMusic translated lyrics or missing ID")
@@ -1935,7 +1937,7 @@ class SharedViewModel(
                 )
             }
             lyricsCanvasRepository
-                .voteechoMusicTranslatedLyrics(
+                .voteSimpMusicTranslatedLyrics(
                     translatedLyricsId = echoMusicLyricsId,
                     upvote = upvote,
                 ).collectLatest { result ->

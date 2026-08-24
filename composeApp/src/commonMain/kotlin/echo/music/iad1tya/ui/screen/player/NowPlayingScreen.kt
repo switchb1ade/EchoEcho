@@ -740,13 +740,13 @@ fun NowPlayingScreenContent(
             screenDataState.lyricsData?.lyricsProvider == LyricsProvider.echoMUSIC &&
                 screenDataState.lyricsData
                     ?.lyrics
-                    ?.echoMusicLyrics != null
+                    ?.simpMusicLyrics != null
         val canVoteTranslatedLyrics =
             screenDataState.lyricsData?.translatedLyrics?.second == LyricsProvider.echoMUSIC &&
                 screenDataState.lyricsData
                     ?.translatedLyrics
                     ?.first
-                    ?.echoMusicLyrics != null
+                    ?.simpMusicLyrics != null
 
         VoteLyricsDialog(
             canVoteLyrics = canVoteLyrics,
@@ -2194,13 +2194,13 @@ fun NowPlayingScreenContent(
                                             screenDataState.lyricsData?.lyricsProvider == LyricsProvider.echoMUSIC &&
                                                 screenDataState.lyricsData
                                                     ?.lyrics
-                                                    ?.echoMusicLyrics != null
+                                                    ?.simpMusicLyrics != null
                                         val canVoteTranslatedLyrics =
                                             screenDataState.lyricsData?.translatedLyrics?.second == LyricsProvider.echoMUSIC &&
                                                 screenDataState.lyricsData
                                                     ?.translatedLyrics
                                                     ?.first
-                                                    ?.echoMusicLyrics != null
+                                                    ?.simpMusicLyrics != null
                                         if (canVoteLyrics || canVoteTranslatedLyrics) {
                                             CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides Dp.Unspecified) {
                                                 IconButton(

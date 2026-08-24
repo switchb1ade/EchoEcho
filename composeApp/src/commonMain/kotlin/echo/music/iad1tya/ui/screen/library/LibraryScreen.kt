@@ -178,7 +178,7 @@ fun LibraryScreen(
                 viewModel.getFavoritePodcasts()
             }
 
-
+            else -> {}
         }
     }
 
@@ -316,7 +316,7 @@ fun LibraryScreen(
                 }
             }
 
-
+            else -> {}
         }
     }
     val coroutineScope = rememberCoroutineScope()
@@ -468,7 +468,7 @@ fun LibraryScreen(
                             LibraryChipType.FAVORITE_PLAYLIST -> stringResource(Res.string.favorite_playlists)
                             LibraryChipType.DOWNLOADED_PLAYLIST -> stringResource(Res.string.downloaded_playlists)
                             LibraryChipType.FAVORITE_PODCAST -> stringResource(Res.string.favorite_podcasts)
-
+                            else -> type.toStringValue()
                         },
                 ) {
                     viewModel.setCurrentScreen(type)
