@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">Mahnı • %1$s</string>
     <string name="playlist_and_author">Səsləndirmə siyahısı • %1$s</string>
@@ -116,7 +116,7 @@
     <string name="about_us">Haqqımızda</string>
     <string name="version">Versiya</string>
     <string name="github">Github</string>
-    <string name="iad1tya_dev">iad1tya</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="buy_me_a_coffee">Mənə qəhvə al</string>
     <string name="paypal">PayPal</string>
     <string name="title">Başlıq</string>

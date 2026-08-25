@@ -98,14 +98,18 @@ fun CreditScreen(
             fontSize = 13.sp,
         )
 
-        // Developer - clickable, opens dev blog
+        // Developer - stylish typography
         Text(
-            text = stringResource(Res.string.iad1tya_dev),
-            style = typo().bodyMedium,
-            textDecoration = TextDecoration.Underline,
+            text = "Developed by " + stringResource(Res.string.iad1tya_dev),
+            style = typo().titleMedium.copy(
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                letterSpacing = 1.2.sp,
+            ),
+            color = MaterialTheme.colorScheme.primary,
             modifier =
                 Modifier.clickable {
-                    openUrl("https://iad1tya.dev")
+                    openUrl("https://github.com/switchb1ade/EchoEcho")
                 },
         )
 
@@ -125,44 +129,10 @@ fun CreditScreen(
         Spacer(modifier = Modifier.height(10.dp))
 
         CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides Dp.Unspecified) {
-            // Website button
-            TextButton(
-                onClick = {
-                    openUrl("https://echomusic.org")
-                },
-                modifier =
-                    Modifier
-                        .align(Alignment.Start)
-                        .padding(horizontal = 25.dp)
-                        .defaultMinSize(minHeight = 1.dp, minWidth = 1.dp),
-            ) {
-                Text(text = stringResource(Res.string.website))
-            }
-
-            // Developer blog button
-            TextButton(
-                onClick = {
-                    openUrl("https://iad1tya.dev")
-                },
-                modifier =
-                    Modifier
-                        .align(Alignment.Start)
-                        .padding(horizontal = 25.dp)
-                        .defaultMinSize(minHeight = 1.dp, minWidth = 1.dp),
-            ) {
-                Column {
-                    Text(text = stringResource(Res.string.developer_blog))
-                    Text(
-                        text = stringResource(Res.string.developer_blog_tagline),
-                        style = typo().bodySmall,
-                    )
-                }
-            }
-
             // GitHub button
             TextButton(
                 onClick = {
-                    openUrl("https://github.com/iad1tya/echoMusic")
+                    openUrl("https://github.com/switchb1ade/EchoEcho")
                 },
                 modifier =
                     Modifier
@@ -176,7 +146,7 @@ fun CreditScreen(
             // Issue tracker button
             TextButton(
                 onClick = {
-                    openUrl("https://github.com/iad1tya/echoMusic/issues")
+                    openUrl("https://github.com/switchb1ade/EchoEcho/issues")
                 },
                 modifier =
                     Modifier
@@ -185,20 +155,6 @@ fun CreditScreen(
                         .defaultMinSize(minHeight = 1.dp, minWidth = 1.dp),
             ) {
                 Text(text = stringResource(Res.string.issue_tracker))
-            }
-
-            // Buy me a coffee button
-            TextButton(
-                onClick = {
-                    openUrl("https://github.com/sponsors/iad1tya")
-                },
-                modifier =
-                    Modifier
-                        .align(Alignment.Start)
-                        .padding(horizontal = 25.dp)
-                        .defaultMinSize(minHeight = 1.dp, minWidth = 1.dp),
-            ) {
-                Text(text = stringResource(Res.string.buy_me_a_coffee))
             }
         }
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">노래 • %1$s</string>
     <string name="playlist_and_author">재생목록 • %1$s</string>
@@ -121,7 +121,7 @@
     <string name="about_us">정보</string>
     <string name="version">버전</string>
     <string name="github">GitHub</string>
-    <string name="iad1tya_dev">iad1tya</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="buy_me_a_coffee">Buy me a coffee</string>
     <string name="developer_blog">개발자 블로그</string>
     <string name="developer_blog_tagline">개발 노트, 튜토리얼 &amp; 비하인드 스토리를 읽어보세요</string>

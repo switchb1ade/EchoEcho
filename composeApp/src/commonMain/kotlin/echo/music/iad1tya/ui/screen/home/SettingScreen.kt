@@ -2171,22 +2171,7 @@ fun SettingScreen(
                     title = stringResource(Res.string.author),
                     subtitle = stringResource(Res.string.iad1tya_dev),
                     onClick = {
-                        uriHandler.openUri("https://github.com/iad1tya")
-                    },
-                )
-
-                SettingItem(
-                    title = stringResource(Res.string.buy_me_a_coffee),
-                    subtitle = stringResource(Res.string.donation),
-                    onClick = {
-                        uriHandler.openUri("https://buymeacoffee.com/iad1tya")
-                    },
-                )
-                SettingItem(
-                    title = stringResource(Res.string.support_upi_crypto),
-                    subtitle = stringResource(Res.string.support_url),
-                    onClick = {
-                        uriHandler.openUri("https://support.iad1tya.cyou/")
+                        uriHandler.openUri("https://github.com/switchb1ade/EchoEcho")
                     },
                 )
                 SettingItem(

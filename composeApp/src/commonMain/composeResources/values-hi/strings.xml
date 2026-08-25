@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">गाना • %1$s</string>
     <string name="playlist_and_author">प्लेलिस्ट • %1$s</string>
@@ -121,7 +121,7 @@
     <string name="about_us">हमारे बारे में</string>
     <string name="version">संस्करण</string>
     <string name="github">गिट्हब</string>
-    <string name="iad1tya_dev">मैक्सरेव-देव</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="buy_me_a_coffee">मुझे एक कॉफी खरीदें</string>
     <string name="developer_blog">डेवलपर ब्लॉग</string>
     <string name="paypal">पेयपाल</string>

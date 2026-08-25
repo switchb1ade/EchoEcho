@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">Titre • %1$s</string>
     <string name="playlist_and_author">Liste de lecture • %1$s</string>
@@ -121,7 +121,7 @@
     <string name="about_us">Qui sommes-nous ?</string>
     <string name="version">Version</string>
     <string name="github">GitHub</string>
-    <string name="iad1tya_dev">iad1tya</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="buy_me_a_coffee">Offrez-moi un café ! ☕</string>
     <string name="developer_blog">Blog des Développeurs</string>
     <string name="developer_blog_tagline">Consultez les notes des développeurs, les tutoriels &amp; les coulisses</string>

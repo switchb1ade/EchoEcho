@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">آهنگ • %1$s</string>
     <string name="playlist_and_author">پلی‌لیست • %1$s</string>
@@ -121,7 +121,7 @@
     <string name="about_us">درباره ما</string>
     <string name="version">نگارش</string>
     <string name="github">گیت‌هاب</string>
-    <string name="iad1tya_dev">iad1tya</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="buy_me_a_coffee">برای من یک قهوه بخر</string>
     <string name="developer_blog">وبلاگ توسعه دهنده</string>
     <string name="paypal">پی‌پال</string>

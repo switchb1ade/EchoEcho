@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">曲目 • %1$s</string>
     <string name="playlist_and_author">播放列表 • %1$s</string>
@@ -121,7 +121,7 @@
     <string name="about_us">关于我们</string>
     <string name="version">版本</string>
     <string name="github">Github</string>
-    <string name="iad1tya_dev">iad1tya</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="buy_me_a_coffee">请我喝杯咖啡（捐赠）</string>
     <string name="developer_blog">开发者博客</string>
     <string name="developer_blog_tagline">阅读开发日志、教程及幕后花絮</string>

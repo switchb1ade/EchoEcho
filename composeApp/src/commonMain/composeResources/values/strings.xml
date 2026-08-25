@@ -121,7 +121,7 @@
     <string name="about_us">About us</string>
     <string name="version">Version</string>
     <string name="github">Github</string>
-    <string name="iad1tya_dev">Aditya</string>
+    <string name="iad1tya_dev">Rajdip Saha</string>
     <string name="support_url">https://support.iad1tya.cyou/</string>
     <string name="support_upi_crypto">Support with UPI/Crypto</string>
     <string name="buy_me_a_coffee">Buy me a coffee</string>
@@ -285,9 +285,9 @@
     <string name="older_first">Older First</string>
     <string name="newer_first">Newer First</string>
     <string name="added_date">Added date</string>
-    <string name="credit_app">A Simple music app using YouTube Music for backend \n\nEchoMusic is an open source project to stream music from YouTube and YouTube Music without ads and tracking. EchoMusic provides many features:\n\n - Streaming music \n - Synced lyrics\n - Personalize data\n - etc… \n\nEchoMusic is always free and no ads\n\nBuild with ❤️ from Aditya</string>
+    <string name="credit_app">A modern, ad-free music app powered by YouTube Music \n\nPalm Player is an open-source project to stream lossless audio without ads and tracking. Palm Player provides many features:\n\n • High-Fidelity Audio Streaming \n • Real-time Synced Lyrics\n • 10-Band Equalizer &amp; AutoEq\n • Spotify Canvas Video Loops\n • Offline Caching &amp; Android Auto\n\nPalm Player is 100% free and ad-free.\n\nBuilt with ❤️ by Rajdip Saha</string>
     <string name="issue_tracker">Issue Tracker</string>
-    <string name="copyright" translatable="false">©2023-2025 Aditya</string>
+    <string name="copyright" translatable="false">© 2026 Rajdip Saha</string>
     <string name="featured_playlists">Featured Playlists</string>
     <string name="podcasts" translatable="false">Podcasts</string>
     <string name="featured_inArtist">Featured on</string>
