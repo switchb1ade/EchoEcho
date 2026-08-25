@@ -897,14 +897,6 @@ fun AlbumScreen(
                             }
                         }
                     }
-                    item(contentType = "ad_banner") {
-                        androidx.compose.foundation.layout.Box(
-                            modifier = androidx.compose.ui.Modifier.fillMaxWidth().padding(vertical = 12.dp),
-                            contentAlignment = androidx.compose.ui.Alignment.Center
-                        ) {
-                            echo.music.iad1tya.expect.ui.StartAppBanner(modifier = androidx.compose.ui.Modifier.fillMaxWidth().height(50.dp))
-                        }
-                    }
                     item(contentType = "other_version") {
                         AnimatedVisibility(uiState.otherVersion.isNotEmpty()) {
                             Column {

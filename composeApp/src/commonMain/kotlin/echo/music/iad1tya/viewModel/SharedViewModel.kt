@@ -154,9 +154,6 @@ class SharedViewModel(
     private val _showNotificationPermissionDialog = MutableStateFlow(false)
     val showNotificationPermissionDialog: StateFlow<Boolean> = _showNotificationPermissionDialog
 
-    private val _showRewardedAds = kotlinx.coroutines.flow.MutableSharedFlow<Unit>()
-    val showRewardedAds: kotlinx.coroutines.flow.SharedFlow<Unit> = _showRewardedAds.asSharedFlow()
-
     private var getFormatFlowJob: Job? = null
 
     var playlistId: MutableStateFlow<String?> = MutableStateFlow(null)
@@ -1854,12 +1851,6 @@ class SharedViewModel(
     // Vote state for original lyrics
     private val _lyricsVoteState = MutableStateFlow<VoteData?>(null)
     val lyricsVoteState: StateFlow<VoteData?> = _lyricsVoteState.asStateFlow()
-
-    fun triggerShowRewardedAds() {
-        viewModelScope.launch {
-            _showRewardedAds.emit(Unit)
-        }
-    }
 
     /**
      * Vote for echoMusic original lyrics (upvote or downvote)

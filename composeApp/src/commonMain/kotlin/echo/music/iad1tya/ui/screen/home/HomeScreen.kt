@@ -550,15 +550,6 @@ fun HomeScreen(
                                             data = item,
                                         )
                                     }
-                                    
-                                    if (index > 0 && index % 3 == 0) {
-                                        androidx.compose.foundation.layout.Box(
-                                            modifier = androidx.compose.ui.Modifier.fillMaxWidth().padding(vertical = 16.dp),
-                                            contentAlignment = androidx.compose.ui.Alignment.Center
-                                        ) {
-                                            echo.music.iad1tya.expect.ui.StartAppBanner(modifier = androidx.compose.ui.Modifier.fillMaxWidth().height(50.dp))
-                                        }
-                                    }
                                 }
                             }
                         }

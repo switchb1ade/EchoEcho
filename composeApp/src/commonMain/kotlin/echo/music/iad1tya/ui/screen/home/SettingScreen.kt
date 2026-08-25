@@ -2190,13 +2190,6 @@ fun SettingScreen(
                     },
                 )
                 SettingItem(
-                    title = "Support by watching ads",
-                    subtitle = "Play 3 reward-based ads continuously",
-                    onClick = {
-                        sharedViewModel.triggerShowRewardedAds()
-                    },
-                )
-                SettingItem(
                     title = stringResource(Res.string.third_party_libraries),
                     subtitle = stringResource(Res.string.description_and_licenses),
                     onClick = {

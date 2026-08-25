@@ -667,15 +667,7 @@ fun SearchScreen(
                                                             ),
                                                         state = resultsState,
                                                     ) {
-                                                        itemsIndexed(currentResults) { index, result ->
-                                                            if (index > 0 && index % 6 == 0) {
-                                                                androidx.compose.foundation.layout.Box(
-                                                                    modifier = androidx.compose.ui.Modifier.fillMaxWidth().padding(vertical = 12.dp),
-                                                                    contentAlignment = androidx.compose.ui.Alignment.Center
-                                                                ) {
-                                                                    echo.music.iad1tya.expect.ui.StartAppBanner(modifier = androidx.compose.ui.Modifier.fillMaxWidth().height(50.dp))
-                                                                }
-                                                            }
+                                                        items(currentResults) { result ->
                                                             when (result) {
                                                                 is SongsResult -> {
                                                                     SongFullWidthItems(

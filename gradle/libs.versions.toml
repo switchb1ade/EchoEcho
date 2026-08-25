@@ -85,10 +85,8 @@ nucleus-notification = "2.4.4"
 commonsIo = "2.5"
 packagedeps = "0.2.5"
 conveyor = "2.0"
-startapp-sdk = "5.1.0"
 
 [libraries]
-startapp-sdk = { module = "com.startapp:inapp-sdk", version.ref = "startapp-sdk" }
 desugaring = { group = "com.android.tools", name = "desugar_jdk_libs_nio", version.ref = "desugaring"}
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 compose-material3-lib = { group = "androidx.compose.material3", name = "material3", version.ref = "material3-expressive" }
