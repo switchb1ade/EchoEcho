@@ -1686,7 +1686,7 @@ class SharedViewModel(
 
     fun addListToQueue(listTrack: ArrayList<Track>) {
         viewModelScope.launch {
-            if (listTrack.size == 1 && dataStoreManager.endlessQueue.first() == TRUE) {
+            if (listTrack.size == 1) {
                 mediaPlayerHandler.playNext(listTrack.first())
                 makeToast(getString(Res.string.play_next))
             } else {

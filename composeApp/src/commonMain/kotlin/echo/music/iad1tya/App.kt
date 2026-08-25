@@ -321,12 +321,8 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
     }
 
     LaunchedEffect(updateData) {
-        val response = updateData ?: return@LaunchedEffect
-        if (viewModel.showedUpdateDialog &&
-            response.tagName != getString(Res.string.version_format, VersionManager.getVersionName())
-        ) {
-            shouldShowUpdateDialog = true
-        }
+        // Disabled external third-party update prompt for self-contained Palm Player build
+        shouldShowUpdateDialog = false
     }
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -420,7 +416,7 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
                             } else {
                                 AppBottomNavigationBar(
                                     navController = navController,
-                                    isTranslucentBackground = isTranslucentBottomBar == TRUE,
+                                    isTranslucentBackground = isTranslucentBottomBar != DataStoreManager.FALSE,
                                     showAnalyticsTab = showAnalyticsTab,
                                 ) { klass ->
                                     viewModel.reloadDestination(klass)
