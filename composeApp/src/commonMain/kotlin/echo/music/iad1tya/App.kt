@@ -192,18 +192,12 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
                 // of it. The token is handed straight to the shared view model, and the screen
                 // closes itself when it sees a session key appear.
                 token?.let { viewModel.completeLastfmLogin(it) }
-            } else if (data.host == "echomusic.org" || data.scheme == "echomusic") {
-                // https://echomusic.org/app/watch?v=VIDEO_ID
-                // https://echomusic.org/app/playlist?list=PLAYLIST_ID
-                // https://echomusic.org/app/channel/CHANNEL_ID
-                // echomusic://watch?v=VIDEO_ID  (host="watch", no path)
-                // echomusic://playlist?list=PLAYLIST_ID
-                // echomusic://channel/CHANNEL_ID
+            } else if (data.host == "echomusic.org" || data.scheme == "echomusic" || data.scheme == "palmplayer") {
+                // palmplayer://watch?v=VIDEO_ID
+                // echomusic://watch?v=VIDEO_ID
                 val segments = data.pathSegments
-                // For echomusic.org: segments = ["app", "watch"] → appPath = segments[1]
-                // For echomusic://: host IS the appPath (e.g. host="watch"), segments = []
                 val appPath =
-                    if (data.scheme == "echomusic") {
+                    if (data.scheme == "echomusic" || data.scheme == "palmplayer") {
                         data.host
                     } else {
                         segments.getOrNull(1)
@@ -321,8 +315,13 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
     }
 
     LaunchedEffect(updateData) {
-        // Disabled external third-party update prompt for self-contained Palm Player build
-        shouldShowUpdateDialog = false
+        val response = updateData ?: return@LaunchedEffect
+        if (viewModel.showedUpdateDialog &&
+            response.tagName.isNotBlank() &&
+            response.tagName != getString(Res.string.version_format, VersionManager.getVersionName())
+        ) {
+            shouldShowUpdateDialog = true
+        }
     }
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -641,7 +640,7 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
                                 onClick = {
                                     shouldShowUpdateDialog = false
                                     viewModel.showedUpdateDialog = false
-                                    openUrl("https://echomusic.org/download")
+                                    openUrl("https://github.com/switchb1ade/EchoEcho/releases/latest")
                                 },
                             ) {
                                 Text(
