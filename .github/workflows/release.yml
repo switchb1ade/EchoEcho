@@ -1,4 +1,4 @@
-﻿name: Build & Publish Palm Player Release
+name: Build & Publish Palm Player Release
 
 on:
   push:
@@ -65,18 +65,20 @@ jobs:
           body: |
             ## 🌴 Palm Player ${{ steps.tag.outputs.TAG_NAME }}
             
-            ### ✨ Highlights:
-            - **100% Ad-Free**: Clean, zero-ad music streaming experience.
-            - **Play Next Queue Priority**: Swiping and queueing places tracks right after the active song.
-            - **Translucent Glass Blur Navigation Bar**: Frosted glassmorphism background.
-            - **High-Fidelity Audio**: Full equalizer support, synced lyrics, and Spotify Canvas video loops.
-            - **Built & Maintained by Rajdip Saha**.
+            ### ✨ What's New & Highlights:
+            - **🚀 Live In-App Updates**: Check and install new releases directly inside the app with a single tap.
+            - **🔕 Quiet Launch**: Completely eliminated annoying update popups when opening the app.
+            - **🎵 Play Next Queue Priority**: Single-track queue actions and swipes insert immediately after the currently playing song.
+            - **✨ Frosted Glass Bottom Bar**: Translucent navigation bar with smooth backdrop blur.
+            - **🚫 100% Ad-Free**: Clean, zero-ad music streaming with all tracking SDKs stripped.
+            - **🎚️ High-Fidelity Audio**: Full parametric equalizer, AutoEQ presets, synchronized lyrics, and Spotify Canvas videos.
+            - **👤 Built & Maintained by Rajdip Saha**.
 
             ### 📦 Download Assets:
             - **Universal (All Phones & Emulators)**: `PalmPlayer-Universal.apk`
-            - **Modern Android Devices**: `PalmPlayer-arm64-v8a.apk`
+            - **Modern Android (64-bit)**: `PalmPlayer-arm64-v8a.apk`
             - **PC Emulators / ChromeOS**: `PalmPlayer-x86_64.apk`
-            - **Older Devices**: `PalmPlayer-armeabi-v7a.apk`
+            - **Legacy Devices**: `PalmPlayer-armeabi-v7a.apk`
           files: |
             release-assets/PalmPlayer-Universal.apk
             release-assets/PalmPlayer-arm64-v8a.apk
