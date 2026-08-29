@@ -150,13 +150,15 @@
                 <data android:pathPrefix="/app/" />
             </intent-filter>
 
-            <!-- Palm Player deep link filter (custom scheme) -->
+            <!-- Sulfur Music deep link filter (custom scheme) -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <data android:scheme="sulfur" />
+                <data android:scheme="sulfurmusic" />
                 <data android:scheme="palmplayer" />
                 <data android:scheme="echomusic" />
             </intent-filter>

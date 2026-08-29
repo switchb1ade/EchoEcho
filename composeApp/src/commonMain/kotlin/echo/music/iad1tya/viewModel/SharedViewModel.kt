@@ -1026,7 +1026,7 @@ class SharedViewModel(
 
     fun downloadAndInstallUpdate(
         apkUrl: String,
-        fileName: String = "PalmPlayer-Update.apk",
+        fileName: String = "SulfurMusic-Update.apk",
     ) {
         if (_isDownloadingUpdate.value) return
         viewModelScope.launch(Dispatchers.IO) {

@@ -197,12 +197,12 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
                 // echomusic://watch?v=VIDEO_ID
                 val segments = data.pathSegments
                 val appPath =
-                    if (data.scheme == "echomusic" || data.scheme == "palmplayer") {
+                    if (data.scheme == "echomusic" || data.scheme == "palmplayer" || data.scheme == "sulfur" || data.scheme == "sulfurmusic") {
                         data.host
                     } else {
                         segments.getOrNull(1)
                     }
-                Logger.d("MainActivity", "echomusic.org deep link, appPath: $appPath")
+                Logger.d("MainActivity", "deep link, appPath: $appPath")
                 viewModel.setIntent(null)
                 when (appPath) {
                     "watch" -> {
@@ -224,10 +224,8 @@ if (data.scheme == "wordbyword" && data.host == "lastfm-auth") {
                     }
 
                     "channel", "c" -> {
-                        // echomusic://channel/UCxxx → segments = ["UCxxx"]
-                        // echomusic.org/app/channel/UCxxx → segments = ["app", "channel", "UCxxx"]
                         val artistId =
-                            if (data.scheme == "echomusic") {
+                            if (data.scheme == "echomusic" || data.scheme == "palmplayer" || data.scheme == "sulfur" || data.scheme == "sulfurmusic") {
                                 segments.firstOrNull()
                             } else {
                                 segments.getOrNull(2)

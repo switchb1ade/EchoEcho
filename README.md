@@ -1,15 +1,14 @@
-﻿<div align="center">
+<div align="center">
 
 ```
-  ____       _              ____  _                       
- |  _ \ __ _| |_ __ ___    |  _ \| | __ _ _   _  ___ _ __ 
- | |_) / _` | | '_ ` _ \   | |_) | |/ _` | | | |/ _ \ '__|
- |  __/ (_| | | | | | | |  |  __/| | (_| | |_| |  __/ |   
- |_|   \__,_|_|_| |_| |_|  |_|   |_|\__,_|\__, |\___|_|   
-                                          |___/           
+  ____        _  __             __  __           _      
+ / ___| _   _| |/ _|_   _ _ __ |  \/  |_   _ ___(_) ___ 
+ \___ \| | | | | |_| | | | '__|| |\/| | | | / __| |/ __|
+  ___) | |_| | |  _| |_| | |   | |  | | |_| \__ \ | (__ 
+ |____/ \__,_|_|_|  \__,_|_|   |_|  |_|\__,_|___/_|\___|
 ```
 
-### 🌴 **Modern • Ad-Free • Lossless • Cross-Platform Music Client** 🌴
+### ⚡ **Sulfur Music • Modern • Ad-Free • Lossless Music Client** ⚡
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.4%20Multiplatform-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![Android](https://img.shields.io/badge/Platform-Android%208.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://android.com)
@@ -18,8 +17,8 @@
 [![Ad-Free](https://img.shields.io/badge/Ads-NOT%20Included-critical?style=for-the-badge)](#)
 
 <p align="center">
-  <b>Palm Player</b> is a lightweight, ad-free music streaming app engineered with <b>Kotlin & Compose Multiplatform</b>.<br/>
-  Powered by YouTube Music backend, Spotify Canvas integration, real-time synced lyrics, and an audiophile-grade 10-band equalizer.
+  <b>Sulfur Music</b> is a sleek, ultra-fast, ad-free music streaming client engineered with <b>Kotlin &amp; Compose Multiplatform</b>.<br/>
+  Powered by YouTube Music backend, Spotify Canvas video visuals, real-time synchronized lyrics, live 1-tap in-app updates, and an audiophile 10-band equalizer.
 </p>
 
 ---
@@ -144,5 +143,5 @@ graph TD
 This project is open source and distributed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for more information.
 
 <div align="center">
-  <sub>Built with 🌴 for music lovers everywhere.</sub>
+  <sub>Built with ⚡ by Rajdip Saha for music lovers everywhere.</sub>
 </div>

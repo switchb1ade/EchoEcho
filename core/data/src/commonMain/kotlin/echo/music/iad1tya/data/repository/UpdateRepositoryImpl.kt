@@ -21,7 +21,7 @@ internal class UpdateRepositoryImpl(
                         response.assets?.filterNotNull()?.firstOrNull { asset ->
                             val name = asset.name ?: return@firstOrNull false
                             name.endsWith(".apk", ignoreCase = true) &&
-                                (name.contains("universal", ignoreCase = true) || name.contains("PalmPlayer", ignoreCase = true))
+                                (name.contains("universal", ignoreCase = true) || name.contains("SulfurMusic", ignoreCase = true) || name.contains("PalmPlayer", ignoreCase = true))
                         } ?: response.assets?.filterNotNull()?.firstOrNull { asset ->
                             val name = asset.name ?: return@firstOrNull false
                             name.endsWith(".apk", ignoreCase = true)

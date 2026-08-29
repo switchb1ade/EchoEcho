@@ -40,7 +40,7 @@ fun SupportProjectDialog(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "If you enjoy Palm Player, please consider starring and supporting the project on GitHub!",
+                    text = "If you enjoy Sulfur Music, please consider starring and supporting the project on GitHub!",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )

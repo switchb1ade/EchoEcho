@@ -2309,7 +2309,7 @@ fun SettingScreen(
                 sharedViewModel.clearUpdateResponse()
             },
             title = {
-                Text(text = "Palm Player is Up to Date", style = typo().titleSmall)
+                Text(text = "Sulfur Music is Up to Date", style = typo().titleSmall)
             },
             text = {
                 Text(
