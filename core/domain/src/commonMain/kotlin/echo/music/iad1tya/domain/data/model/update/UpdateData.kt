@@ -4,4 +4,6 @@ data class UpdateData(
     val tagName: String,
     val releaseTime: String?,
     val body: String,
+    val apkDownloadUrl: String? = null,
+    val apkName: String? = null,
 )

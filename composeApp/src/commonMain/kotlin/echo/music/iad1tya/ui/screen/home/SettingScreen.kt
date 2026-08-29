@@ -143,6 +143,10 @@ import echo.music.iad1tya.viewModel.SettingAlertState
 import echo.music.iad1tya.viewModel.SettingBasicAlertState
 import echo.music.iad1tya.viewModel.SettingsViewModel
 import echo.music.iad1tya.viewModel.SharedViewModel
+import com.mikepenz.markdown.m3.Markdown
+import com.mikepenz.markdown.m3.markdownTypography
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.ui.compose.ChipColors
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
@@ -540,6 +544,24 @@ fun SettingScreen(
     val castState by viewModel.castState.collectAsStateWithLifecycle()
 
     val isCheckingUpdate by sharedViewModel.isCheckingUpdate.collectAsStateWithLifecycle()
+    val isDownloadingUpdate by sharedViewModel.isDownloadingUpdate.collectAsStateWithLifecycle()
+    val updateDownloadProgress by sharedViewModel.updateDownloadProgress.collectAsStateWithLifecycle()
+    val updateDownloadError by sharedViewModel.updateDownloadError.collectAsStateWithLifecycle()
+    val updateResponse by sharedViewModel.updateResponse.collectAsStateWithLifecycle()
+    var userRequestedCheck by remember { mutableStateOf(false) }
+    var showUpToDateDialog by remember { mutableStateOf(false) }
+
+    LaunchedEffect(updateResponse, isCheckingUpdate) {
+        if (userRequestedCheck && !isCheckingUpdate) {
+            val response = updateResponse
+            if (response != null && response.tagName.isNotBlank()) {
+                val currentVersion = getString(Res.string.version_format, VersionManager.getVersionName())
+                if (response.tagName == currentVersion) {
+                    showUpToDateDialog = true
+                }
+            }
+        }
+    }
 
     val hazeState =
         rememberHazeState(
@@ -2157,9 +2179,10 @@ fun SettingScreen(
                 )
                 SettingItem(
                     title = stringResource(Res.string.check_for_update),
-                    subtitle = "View and download latest releases on GitHub",
+                    subtitle = if (isCheckingUpdate) "Checking for updates..." else "Tap to check and download latest update",
                     onClick = {
-                        uriHandler.openUri("https://github.com/switchb1ade/EchoEcho/releases")
+                        userRequestedCheck = true
+                        sharedViewModel.checkForUpdate()
                     },
                 )
                 SettingItem(
@@ -2182,6 +2205,132 @@ fun SettingScreen(
             EndOfPage()
         }
     }
+
+    val currentVersionName = stringResource(Res.string.version_format, VersionManager.getVersionName())
+    if (updateResponse != null && updateResponse?.tagName != currentVersionName) {
+        val update = updateResponse!!
+        AlertDialog(
+            onDismissRequest = {
+                if (!isDownloadingUpdate) {
+                    sharedViewModel.clearUpdateResponse()
+                    userRequestedCheck = false
+                }
+            },
+            title = {
+                Text(
+                    text = "Update Available (${update.tagName})",
+                    style = typo().titleMedium,
+                )
+            },
+            text = {
+                Column(
+                    modifier = Modifier.fillMaxWidth().heightIn(max = 350.dp).verticalScroll(rememberScrollState()),
+                ) {
+                    if (update.body.isNotBlank()) {
+                        Markdown(
+                            update.body,
+                            typography =
+                                markdownTypography(
+                                    text = typo().bodySmall,
+                                    bullet = typo().bodySmall,
+                                    paragraph = typo().bodySmall,
+                                ),
+                        )
+                        Spacer(Modifier.height(16.dp))
+                    }
+
+                    if (isDownloadingUpdate) {
+                        val progress = updateDownloadProgress ?: 0f
+                        Text(
+                            text = "Downloading update: ${(progress * 100).toInt()}%",
+                            style = typo().labelSmall,
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        LinearProgressIndicator(
+                            progress = { progress },
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+
+                    if (updateDownloadError != null) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            text = "Error: $updateDownloadError",
+                            color = MaterialTheme.colorScheme.error,
+                            style = typo().labelSmall,
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    enabled = !isDownloadingUpdate,
+                    onClick = {
+                        val downloadUrl = update.apkDownloadUrl
+                        if (!downloadUrl.isNullOrBlank()) {
+                            sharedViewModel.downloadAndInstallUpdate(
+                                downloadUrl,
+                                update.apkName ?: "PalmPlayer-Update.apk",
+                            )
+                        } else {
+                            uriHandler.openUri("https://github.com/switchb1ade/EchoEcho/releases/latest")
+                        }
+                    },
+                ) {
+                    Text(
+                        text = if (isDownloadingUpdate) "Downloading..." else "Download & Install",
+                        style = typo().bodySmall,
+                    )
+                }
+            },
+            dismissButton = {
+                if (!isDownloadingUpdate) {
+                    TextButton(
+                        onClick = {
+                            sharedViewModel.clearUpdateResponse()
+                            userRequestedCheck = false
+                        },
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.cancel),
+                            style = typo().bodySmall,
+                        )
+                    }
+                }
+            },
+        )
+    }
+
+    if (showUpToDateDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showUpToDateDialog = false
+                userRequestedCheck = false
+                sharedViewModel.clearUpdateResponse()
+            },
+            title = {
+                Text(text = "Palm Player is Up to Date", style = typo().titleSmall)
+            },
+            text = {
+                Text(
+                    text = "You are already using the latest version (${VersionManager.getVersionName()}).",
+                    style = typo().bodyMedium,
+                )
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showUpToDateDialog = false
+                        userRequestedCheck = false
+                        sharedViewModel.clearUpdateResponse()
+                    },
+                ) {
+                    Text(text = "OK", style = typo().bodySmall)
+                }
+            },
+        )
+    }
+
     importState?.let { progress ->
         ImportProgressDialog(
             progress = progress,

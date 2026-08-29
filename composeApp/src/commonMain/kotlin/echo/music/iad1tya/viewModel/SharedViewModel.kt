@@ -63,10 +63,14 @@ import echo.music.iad1tya.logger.LogLevel
 import echo.music.iad1tya.logger.Logger
 import echo.music.iad1tya.Platform
 import echo.music.iad1tya.expect.getDownloadFolderPath
+import echo.music.iad1tya.expect.installDownloadedApk
 import echo.music.iad1tya.expect.ui.toByteArray
 import echo.music.iad1tya.getPlatform
 import echo.music.iad1tya.utils.VersionManager
 import echo.music.iad1tya.viewModel.base.BaseViewModel
+import io.ktor.client.call.body
+import io.ktor.client.plugins.onDownload
+import io.ktor.client.request.get
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -127,6 +131,15 @@ class SharedViewModel(
 
     private val _isCheckingUpdate = MutableStateFlow(false)
     val isCheckingUpdate: StateFlow<Boolean> = _isCheckingUpdate
+
+    private val _isDownloadingUpdate = MutableStateFlow(false)
+    val isDownloadingUpdate: StateFlow<Boolean> = _isDownloadingUpdate
+
+    private val _updateDownloadProgress = MutableStateFlow<Float?>(null)
+    val updateDownloadProgress: StateFlow<Float?> = _updateDownloadProgress
+
+    private val _updateDownloadError = MutableStateFlow<String?>(null)
+    val updateDownloadError: StateFlow<String?> = _updateDownloadError
 
     private var _liked: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val liked: SharedFlow<Boolean> = _liked.asSharedFlow()
@@ -1001,6 +1014,46 @@ class SharedViewModel(
                     }
                     _isCheckingUpdate.value = false
                 }
+            }
+        }
+    }
+
+    fun clearUpdateResponse() {
+        _updateResponse.value = null
+        _updateDownloadProgress.value = null
+        _updateDownloadError.value = null
+    }
+
+    fun downloadAndInstallUpdate(
+        apkUrl: String,
+        fileName: String = "PalmPlayer-Update.apk",
+    ) {
+        if (_isDownloadingUpdate.value) return
+        viewModelScope.launch(Dispatchers.IO) {
+            _isDownloadingUpdate.value = true
+            _updateDownloadProgress.value = 0f
+            _updateDownloadError.value = null
+            try {
+                val client = io.ktor.client.HttpClient(io.ktor.client.engine.cio.CIO)
+                val response =
+                    client.get(apkUrl) {
+                        onDownload { bytesSentTotal, contentLength ->
+                            if (contentLength != null && contentLength > 0L) {
+                                _updateDownloadProgress.value =
+                                    (bytesSentTotal.toFloat() / contentLength.toFloat()).coerceIn(0f, 1f)
+                            }
+                        }
+                    }
+                val bytes = response.body<ByteArray>()
+                _updateDownloadProgress.value = 1f
+                val installed = installDownloadedApk(bytes, fileName)
+                if (!installed) {
+                    _updateDownloadError.value = "Failed to launch package installer"
+                }
+            } catch (e: Exception) {
+                _updateDownloadError.value = e.message ?: "Download failed"
+            } finally {
+                _isDownloadingUpdate.value = false
             }
         }
     }
