@@ -2156,15 +2156,10 @@ fun SettingScreen(
                     },
                 )
                 SettingItem(
-                    title = stringResource(Res.string.auto_check_for_update),
-                    subtitle = stringResource(Res.string.auto_check_for_update_description),
-                    switch = (autoCheckUpdate to { viewModel.setAutoCheckUpdate(it) }),
-                )
-                SettingItem(
                     title = stringResource(Res.string.check_for_update),
-                    subtitle = checkForUpdateSubtitle,
+                    subtitle = "View and download latest releases on GitHub",
                     onClick = {
-                        sharedViewModel.checkForUpdate()
+                        uriHandler.openUri("https://github.com/switchb1ade/EchoEcho/releases")
                     },
                 )
                 SettingItem(
