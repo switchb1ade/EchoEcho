@@ -133,6 +133,11 @@ import echo.music.iad1tya.ui.screen.library.LibraryDynamicPlaylistType
 import echo.music.iad1tya.ui.navigation.destination.list.PlaylistDestination
 import echo.music.iad1tya.ui.navigation.destination.login.LoginDestination
 import echo.music.iad1tya.ui.theme.typo
+import echo.music.iad1tya.ui.theme.fontFamily
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import echo.music.iad1tya.viewModel.HomeViewModel
 import echo.music.iad1tya.viewModel.HomeViewModel.Companion.HOME_PARAMS_COMMUTE
 import echo.music.iad1tya.viewModel.HomeViewModel.Companion.HOME_PARAMS_ENERGIZE
@@ -814,11 +819,26 @@ fun HomeTopAppBar(navController: NavController, accountInfo: Pair<String?, Strin
             }
         },
         title = {
-            Text(
-                text = stringResource(Res.string.app_name),
-                style = typo().titleMedium,
-                color = MaterialTheme.colorScheme.onBackground,
-            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = stringResource(Res.string.app_name),
+                    style = typo().titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+                Text(
+                    text = "made by rajdip",
+                    style = TextStyle(
+                        fontFamily = fontFamily(),
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        fontStyle = FontStyle.Italic,
+                        letterSpacing = 1.2.sp,
+                    ),
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
         },
         actions = {
             RippleIconButton(imageVector = echoIcons.History, tint = MaterialTheme.colorScheme.onBackground) {
